@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Cush",
+      "hasCanvas": false,
+      "bodyTextLen": 4512,
+      "bodyTextHash": "9e33d027019fe6f0ce6e7f42a9809f4fc65b56ec51e24d9ca08bb7283078bc3d",
+      "bodyTextPrefix": "Payments Business Core Company Join the beta CUSH PAYMENTS · CUS",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Cush",
+      "hasCanvas": false,
+      "bodyTextLen": 4467,
+      "bodyTextHash": "460cf6460e4360cbe38acbefb99dcbadb5e9f370ccefbebe8bebea99e7b9fab0",
+      "bodyTextPrefix": "CUSH PAYMENTS · CUSH CORE Africa, settled. Instant remittances f",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

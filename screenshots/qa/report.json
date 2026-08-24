@@ -1,0 +1,107 @@
+[
+  {
+    "type": "overflow",
+    "view": "desk",
+    "route": "/",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "desk",
+    "route": "/payments",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "desk",
+    "route": "/business",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "desk",
+    "route": "/core",
+    "x": 0
+  },
+  {
+    "type": "console",
+    "view": "desk",
+    "msg": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <SafeFragment fallback={null}>\n      <CatchBoundary getResetKey={function getResetKey} errorComponent={function AppErrorComponent} ...>\n        <SafeFragment fallback={function fallback}>\n          <MatchInnerImpl match={{id:\"/compa...\", ...}}>\n            <Lazy>\n              <CompanyPage>\n                <main>\n                  <section>\n                  <section>\n                  <section className=\"mx-auto ma...\">\n                    <p>\n                    <h2>\n                    <p>\n                    <OriginationMap className=\"mt-10\">\n                      <figure className=\"overflow-h...\">\n                        <div className=\"grain rela...\">\n                          <svg viewBox=\"0 0 1100 680\" className=\"h-auto w-full\" role=\"img\" aria-label=\"Money orig...\">\n                            <defs>\n                            <circle>\n                            <circle>\n                            <circle>\n                            <g clipPath=\"url(#_R_8q...\">\n                              <circle>\n                              <circle>\n                              <circle>\n                              <circle>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <line>\n                              <line>\n                              <line>\n                              <g>\n                              <g>\n                                <line\n                                  x1={444.2891015667849}\n+                                 y1={247.6190331746519}\n-                                 y1=\"247.61903317465186\"\n                                  x2={550}\n                                  y2={348}\n                                  stroke=\"#e85d04\"\n                                  strokeWidth={1}\n                                  strokeOpacity={0.22}\n                                  strokeLinecap=\"round\"\n                                >\n                              ...\n                              ...\n                            <g>\n                            <g onMouseEnter={function onMouseEnter} onMouseLeave={function onMouseLeave} ...>\n                              <circle\n                                cx={444.2891015667849}\n+                               cy={247.6190331746519}\n-                               cy=\"247.61903317465186\"\n                                r=\"14\"\n                                fill=\"transparent\"\n                              >\n                              <circle\n                                cx={444.2891015667849}\n+                               cy={247.6190331746519}\n-                               cy=\"247.61903317465186\"\n                                r={2.8}\n                                fill=\"#171411\"\n                                fillOpacity={0.55}\n                              >\n                            ...\n                            ...\n                          ...\n                        ...\n                  ...\n"
+  },
+  {
+    "type": "overflow",
+    "view": "desk",
+    "route": "/company",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "tab",
+    "route": "/",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "tab",
+    "route": "/payments",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "tab",
+    "route": "/business",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "tab",
+    "route": "/core",
+    "x": 0
+  },
+  {
+    "type": "console",
+    "view": "tab",
+    "msg": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <SafeFragment fallback={null}>\n      <CatchBoundary getResetKey={function getResetKey} errorComponent={function AppErrorComponent} ...>\n        <SafeFragment fallback={function fallback}>\n          <MatchInnerImpl match={{id:\"/compa...\", ...}}>\n            <Lazy>\n              <CompanyPage>\n                <main>\n                  <section>\n                  <section>\n                  <section className=\"mx-auto ma...\">\n                    <p>\n                    <h2>\n                    <p>\n                    <OriginationMap className=\"mt-10\">\n                      <figure className=\"overflow-h...\">\n                        <div className=\"grain rela...\">\n                          <svg viewBox=\"0 0 1100 680\" className=\"h-auto w-full\" role=\"img\" aria-label=\"Money orig...\">\n                            <defs>\n                            <circle>\n                            <circle>\n                            <circle>\n                            <g clipPath=\"url(#_R_8q...\">\n                              <circle>\n                              <circle>\n                              <circle>\n                              <circle>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <line>\n                              <line>\n                              <line>\n                              <g>\n                              <g>\n                                <line\n                                  x1={444.2891015667849}\n+                                 y1={247.6190331746519}\n-                                 y1=\"247.61903317465186\"\n                                  x2={550}\n                                  y2={348}\n                                  stroke=\"#e85d04\"\n                                  strokeWidth={1}\n                                  strokeOpacity={0.22}\n                                  strokeLinecap=\"round\"\n                                >\n                              ...\n                              ...\n                            <g>\n                            <g onMouseEnter={function onMouseEnter} onMouseLeave={function onMouseLeave} ...>\n                              <circle\n                                cx={444.2891015667849}\n+                               cy={247.6190331746519}\n-                               cy=\"247.61903317465186\"\n                                r=\"14\"\n                                fill=\"transparent\"\n                              >\n                              <circle\n                                cx={444.2891015667849}\n+                               cy={247.6190331746519}\n-                               cy=\"247.61903317465186\"\n                                r={2.8}\n                                fill=\"#171411\"\n                                fillOpacity={0.55}\n                              >\n                            ...\n                            ...\n                          ...\n                        ...\n                  ...\n"
+  },
+  {
+    "type": "overflow",
+    "view": "tab",
+    "route": "/company",
+    "x": 0
+  },
+  {
+    "type": "overflow",
+    "view": "mob",
+    "route": "/",
+    "x": 4
+  },
+  {
+    "type": "overflow",
+    "view": "mob",
+    "route": "/payments",
+    "x": 4
+  },
+  {
+    "type": "overflow",
+    "view": "mob",
+    "route": "/business",
+    "x": 4
+  },
+  {
+    "type": "overflow",
+    "view": "mob",
+    "route": "/core",
+    "x": 4
+  },
+  {
+    "type": "console",
+    "view": "mob",
+    "msg": "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <SafeFragment fallback={null}>\n      <CatchBoundary getResetKey={function getResetKey} errorComponent={function AppErrorComponent} ...>\n        <SafeFragment fallback={function fallback}>\n          <MatchInnerImpl match={{id:\"/compa...\", ...}}>\n            <Lazy>\n              <CompanyPage>\n                <main>\n                  <section>\n                  <section>\n                  <section className=\"mx-auto ma...\">\n                    <p>\n                    <h2>\n                    <p>\n                    <OriginationMap className=\"mt-10\">\n                      <figure className=\"overflow-h...\">\n                        <div className=\"grain rela...\">\n                          <svg viewBox=\"0 0 1100 680\" className=\"h-auto w-full\" role=\"img\" aria-label=\"Money orig...\">\n                            <defs>\n                            <circle>\n                            <circle>\n                            <circle>\n                            <g clipPath=\"url(#_R_8q...\">\n                              <circle>\n                              <circle>\n                              <circle>\n                              <circle>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <path>\n                              <line>\n                              <line>\n                              <line>\n                              <g>\n                              <g>\n                                <line\n                                  x1={444.2891015667849}\n+                                 y1={247.6190331746519}\n-                                 y1=\"247.61903317465186\"\n                                  x2={550}\n                                  y2={348}\n                                  stroke=\"#e85d04\"\n                                  strokeWidth={1}\n                                  strokeOpacity={0.22}\n                                  strokeLinecap=\"round\"\n                                >\n                              ...\n                              ...\n                            <g>\n                            <g onMouseEnter={function onMouseEnter} onMouseLeave={function onMouseLeave} ...>\n                              <circle\n                                cx={444.2891015667849}\n+                               cy={247.6190331746519}\n-                               cy=\"247.61903317465186\"\n                                r=\"14\"\n                                fill=\"transparent\"\n                              >\n                              <circle\n                                cx={444.2891015667849}\n+                               cy={247.6190331746519}\n-                               cy=\"247.61903317465186\"\n                                r={2.8}\n                                fill=\"#171411\"\n                                fillOpacity={0.55}\n                              >\n                            ...\n                            ...\n                          ...\n                        ...\n                  ...\n"
+  },
+  {
+    "type": "overflow",
+    "view": "mob",
+    "route": "/company",
+    "x": 4
+  }
+]

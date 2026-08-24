@@ -1,0 +1,1 @@
+import{p as e,v as t}from"./index-4t_bjfet.js";var n=t();function r({className:t,children:r}){return(0,n.jsx)(`span`,{className:e(`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wide text-champagne shadow-[0_0_0_1px_rgb(232_93_4_/_0.28)]`,t),children:r})}export{r as t};
