@@ -14,6 +14,8 @@ import { Route as BusinessRouteImport } from './routes/business'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as CoreRouteImport } from './routes/core'
 import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as ApiContactRouteImport } from './routes/api/contact'
+import { Route as ApiWaitlistRouteImport } from './routes/api/waitlist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +42,16 @@ const PaymentsRoute = PaymentsRouteImport.update({
   path: '/payments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWaitlistRoute = ApiWaitlistRouteImport.update({
+  id: '/api/waitlist',
+  path: '/api/waitlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +59,8 @@ export interface FileRoutesByFullPath {
   '/company': typeof CompanyRoute
   '/core': typeof CoreRoute
   '/payments': typeof PaymentsRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/waitlist': typeof ApiWaitlistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByTo {
   '/company': typeof CompanyRoute
   '/core': typeof CoreRoute
   '/payments': typeof PaymentsRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/waitlist': typeof ApiWaitlistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +78,37 @@ export interface FileRoutesById {
   '/company': typeof CompanyRoute
   '/core': typeof CoreRoute
   '/payments': typeof PaymentsRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/waitlist': typeof ApiWaitlistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/business' | '/company' | '/core' | '/payments'
+  fullPaths:
+    | '/'
+    | '/business'
+    | '/company'
+    | '/core'
+    | '/payments'
+    | '/api/contact'
+    | '/api/waitlist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/business' | '/company' | '/core' | '/payments'
-  id: '__root__' | '/' | '/business' | '/company' | '/core' | '/payments'
+  to:
+    | '/'
+    | '/business'
+    | '/company'
+    | '/core'
+    | '/payments'
+    | '/api/contact'
+    | '/api/waitlist'
+  id:
+    | '__root__'
+    | '/'
+    | '/business'
+    | '/company'
+    | '/core'
+    | '/payments'
+    | '/api/contact'
+    | '/api/waitlist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +117,8 @@ export interface RootRouteChildren {
   CompanyRoute: typeof CompanyRoute
   CoreRoute: typeof CoreRoute
   PaymentsRoute: typeof PaymentsRoute
+  ApiContactRoute: typeof ApiContactRoute
+  ApiWaitlistRoute: typeof ApiWaitlistRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +158,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaymentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/waitlist': {
+      id: '/api/waitlist'
+      path: '/api/waitlist'
+      fullPath: '/api/waitlist'
+      preLoaderRoute: typeof ApiWaitlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +181,8 @@ const rootRouteChildren: RootRouteChildren = {
   CompanyRoute: CompanyRoute,
   CoreRoute: CoreRoute,
   PaymentsRoute: PaymentsRoute,
+  ApiContactRoute: ApiContactRoute,
+  ApiWaitlistRoute: ApiWaitlistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

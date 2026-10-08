@@ -1,8 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArchitectureExplorer } from "@/components/architecture-explorer";
 import { Button } from "@/components/ui/button";
 import { coreModules, rails } from "@/lib/site-data";
-import { useWaitlist } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/core")({
   component: CorePage,
@@ -19,8 +18,6 @@ export const Route = createFileRoute("/core")({
 });
 
 function CorePage() {
-  const openWaitlist = useWaitlist((s) => s.openWith);
-
   return (
     <main>
       <section className="relative min-h-[80svh] overflow-hidden pt-[4.5rem]">
@@ -42,8 +39,14 @@ function CorePage() {
             stack that powers Cush Payments, under your brand.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" onClick={() => openWaitlist("institution")}>
-              Talk to us
+            <Button size="lg" asChild>
+              <Link
+                to="/company"
+                hash="contact"
+                search={{ role: "institution" }}
+              >
+                Talk to us
+              </Link>
             </Button>
             <Button size="lg" variant="onPhoto" asChild>
               <a href="#platform">See the platform</a>
@@ -182,8 +185,10 @@ function CorePage() {
               with you.
             </p>
           </div>
-          <Button size="lg" onClick={() => openWaitlist("institution")}>
-            Talk to us
+          <Button size="lg" asChild>
+            <Link to="/company" hash="contact" search={{ role: "institution" }}>
+              Talk to us
+            </Link>
           </Button>
         </div>
       </section>

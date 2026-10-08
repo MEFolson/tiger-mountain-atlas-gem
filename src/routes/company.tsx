@@ -4,7 +4,15 @@ import { ContactForm } from "@/components/contact-form";
 import { OriginationMap } from "@/components/origination-map";
 import { leadership } from "@/lib/site-data";
 
+type ContactRole = "sender" | "business" | "institution";
+
 export const Route = createFileRoute("/company")({
+  validateSearch: (search: Record<string, unknown>): { role?: ContactRole } =>
+    search.role === "business" ||
+    search.role === "institution" ||
+    search.role === "sender"
+      ? { role: search.role }
+      : {},
   component: CompanyPage,
   head: () => ({
     meta: [
@@ -19,6 +27,7 @@ export const Route = createFileRoute("/company")({
 });
 
 function CompanyPage() {
+  const { role } = Route.useSearch();
   return (
     <main>
       <section className="border-b border-line pt-[4.5rem]">
@@ -128,7 +137,7 @@ function CompanyPage() {
               People sending money, companies and banks — one form.
             </p>
           </div>
-          <ContactForm />
+          <ContactForm defaultRole={role ?? "sender"} />
         </div>
       </section>
     </main>

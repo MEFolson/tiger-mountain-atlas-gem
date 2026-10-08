@@ -25,6 +25,7 @@ export function WaitlistDialog() {
   const [role, setRole] = useState<string>(intent);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     if (open) setRole(intent);
@@ -35,26 +36,52 @@ export function WaitlistDialog() {
     setError("");
   }
 
-  function submit(e: FormEvent) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!name.trim() || !email.includes("@")) {
+    if (sending) return;
+    setError("");
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setError("Please add a name and a valid email.");
       return;
     }
-    const entry = {
-      name: name.trim(),
-      email: email.trim(),
-      role,
-      at: new Date().toISOString(),
-    };
+    const website = (
+      e.currentTarget.elements.namedItem("website") as HTMLInputElement | null
+    )?.value;
+    setSending(true);
     try {
-      const prev = JSON.parse(localStorage.getItem("cush-waitlist") || "[]");
-      const next = Array.isArray(prev) ? [...prev, entry] : [entry];
-      localStorage.setItem("cush-waitlist", JSON.stringify(next));
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          role,
+          website,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.ok) {
+        setError(
+          res.status === 422 && data.error
+            ? data.error
+            : "We could not add you just now. Please try again in a moment.",
+        );
+        return;
+      }
+      setDone(true);
     } catch {
-      localStorage.setItem("cush-waitlist", JSON.stringify([entry]));
+      setError(
+        "We could not add you just now. Please check your connection and try again.",
+      );
+    } finally {
+      setSending(false);
     }
-    setDone(true);
   }
 
   return (
@@ -80,7 +107,11 @@ export function WaitlistDialog() {
             </Button>
           </div>
         ) : (
-          <form onSubmit={submit} className="flex flex-col gap-4">
+          <form
+            onSubmit={submit}
+            className="relative flex flex-col gap-4"
+            noValidate
+          >
             <div>
               <DialogTitle>Join the private beta</DialogTitle>
               <DialogDescription>
@@ -127,14 +158,38 @@ export function WaitlistDialog() {
                 ))}
               </div>
             </div>
-            {error ? <p className="text-sm text-destructive">{error}</p> : null}
-            <Button type="submit" size="lg" className="mt-1 w-full">
-              Request access
+            {error ? (
+              <p className="text-sm text-destructive" role="alert">
+                {error}
+              </p>
+            ) : null}
+            <Button
+              type="submit"
+              size="lg"
+              className="mt-1 w-full"
+              disabled={sending}
+              aria-busy={sending}
+            >
+              {sending ? "Sending" : "Request access"}
             </Button>
             <p className="text-xs text-ash">
               Private beta. Not an offer of regulated services. We’ll only use
               this to reach you about Cush.
             </p>
+            {/* Honeypot for bots. Hidden from people and assistive technology. */}
+            <div
+              aria-hidden="true"
+              className="absolute -left-[9999px] h-px w-px overflow-hidden"
+            >
+              <label htmlFor="wl-website">Website</label>
+              <input
+                id="wl-website"
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
           </form>
         )}
       </DialogContent>

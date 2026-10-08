@@ -116,14 +116,21 @@ export function SiteNav() {
             >
               {isCore ? "Cush Payments" : "Cush Core"}
             </Link>
-            <Button
-              size="sm"
-              onClick={() =>
-                openWaitlist(isCore ? "institution" : "sender")
-              }
-            >
-              {isCore ? "Talk to us" : "Join the beta"}
-            </Button>
+            {isCore ? (
+              <Button size="sm" asChild>
+                <Link
+                  to="/company"
+                  hash="contact"
+                  search={{ role: "institution" }}
+                >
+                  Talk to us
+                </Link>
+              </Button>
+            ) : (
+              <Button size="sm" onClick={() => openWaitlist("sender")}>
+                Join the beta
+              </Button>
+            )}
           </div>
 
           <button
@@ -200,16 +207,29 @@ export function SiteNav() {
                 {isCore ? "Send money home" : "For banks and payment companies"}
               </span>
             </Link>
-            <Button
-              className="mt-auto w-full"
-              size="lg"
-              onClick={() => {
-                setOpen(false);
-                openWaitlist(isCore ? "institution" : "sender");
-              }}
-            >
-              {isCore ? "Talk to us" : "Join the beta"}
-            </Button>
+            {isCore ? (
+              <Button className="mt-auto w-full" size="lg" asChild>
+                <Link
+                  to="/company"
+                  hash="contact"
+                  search={{ role: "institution" }}
+                  onClick={() => setOpen(false)}
+                >
+                  Talk to us
+                </Link>
+              </Button>
+            ) : (
+              <Button
+                className="mt-auto w-full"
+                size="lg"
+                onClick={() => {
+                  setOpen(false);
+                  openWaitlist("sender");
+                }}
+              >
+                Join the beta
+              </Button>
+            )}
           </nav>
         </div>
       ) : null}

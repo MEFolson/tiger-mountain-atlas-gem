@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useWaitlist } from "@/lib/waitlist-store";
 
 export const Route = createFileRoute("/business")({
   component: BusinessPage,
@@ -56,8 +55,6 @@ const features = [
 ];
 
 function BusinessPage() {
-  const openWaitlist = useWaitlist((s) => s.openWith);
-
   return (
     <main>
       <section className="relative min-h-[70svh] overflow-hidden pt-[4.5rem]">
@@ -77,8 +74,10 @@ function BusinessPage() {
             Clear exchange rate. Fast arrival. Same platform as Cush Payments.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" onClick={() => openWaitlist("business")}>
-              Talk to sales
+            <Button size="lg" asChild>
+              <Link to="/company" hash="contact" search={{ role: "business" }}>
+                Talk to sales
+              </Link>
             </Button>
             <Button size="lg" variant="onPhoto" asChild>
               <Link to="/core">For banks: Cush Core</Link>
@@ -136,8 +135,10 @@ function BusinessPage() {
               Approvals, statements, and a named human. The software is the
               rails; the relationship is the bank.
             </p>
-            <Button className="mt-8" onClick={() => openWaitlist("business")}>
-              Book a conversation
+            <Button className="mt-8" asChild>
+              <Link to="/company" hash="contact" search={{ role: "business" }}>
+                Book a conversation
+              </Link>
             </Button>
           </div>
           <ul className="space-y-0">
