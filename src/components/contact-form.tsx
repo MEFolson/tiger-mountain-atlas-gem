@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,28 +23,63 @@ export function ContactForm({
   const [message, setMessage] = useState("");
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
 
-  function submit(e: FormEvent) {
+  useEffect(() => {
+    setRole(defaultRole);
+  }, [defaultRole]);
+
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!name.trim() || !email.includes("@") || !message.trim()) {
+    if (sending) return;
+    setError("");
+    if (
+      !name.trim() ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ||
+      !message.trim()
+    ) {
       setError("Please add a name, a valid email, and a message.");
       return;
     }
-    const entry = {
-      name: name.trim(),
-      email: email.trim(),
-      role,
-      message: message.trim(),
-      at: new Date().toISOString(),
-    };
+    const website = (
+      e.currentTarget.elements.namedItem("website") as HTMLInputElement | null
+    )?.value;
+    setSending(true);
     try {
-      const prev = JSON.parse(localStorage.getItem("cush-contact") || "[]");
-      const next = Array.isArray(prev) ? [...prev, entry] : [entry];
-      localStorage.setItem("cush-contact", JSON.stringify(next));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          role,
+          message: message.trim(),
+          website,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.ok) {
+        setError(
+          res.status === 422 && data.error
+            ? data.error
+            : "Your message could not be sent. Please try again in a moment.",
+        );
+        return;
+      }
+      setDone(true);
     } catch {
-      localStorage.setItem("cush-contact", JSON.stringify([entry]));
+      setError(
+        "Your message could not be sent. Please check your connection and try again.",
+      );
+    } finally {
+      setSending(false);
     }
-    setDone(true);
   }
 
   if (done) {
@@ -60,7 +95,7 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-4">
+    <form onSubmit={submit} className="relative flex flex-col gap-4" noValidate>
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="contact-name">Name</Label>
         <Input
@@ -108,10 +143,34 @@ export function ContactForm({
           onChange={(e) => setMessage(e.target.value)}
         />
       </div>
-      {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      <Button type="submit" size="lg" className="mt-1 w-full sm:w-auto">
-        Send
+      {error ? (
+        <p className="text-sm text-destructive" role="alert">
+          {error}
+        </p>
+      ) : null}
+      <Button
+        type="submit"
+        size="lg"
+        className="mt-1 w-full sm:w-auto"
+        disabled={sending}
+        aria-busy={sending}
+      >
+        {sending ? "Sending" : "Send"}
       </Button>
+      {/* Honeypot for bots. Hidden from people and assistive technology. */}
+      <div
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-px w-px overflow-hidden"
+      >
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
     </form>
   );
 }
